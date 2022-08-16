@@ -1,0 +1,64 @@
+----------------- Options ---------------
+           add_mask2input: 1                             
+             aspect_ratio: 1.0                           
+                batchSize: 1                             
+               bottleneck: 512                           
+          checkpoints_dir: ./log                         
+                constrain: MSE                           
+           content_weight: 1.0                           
+                 dataroot: ./datasets/large_image_dif_shape	[default: ./datasets/Paris/train]
+             dataset_mode: aligned                       
+              discounting: 1                             
+          display_winsize: 256                           
+                 fineSize: 256                           
+                     fuse: 0                             
+                 gan_type: vanilla                       
+               gan_weight: 0.2                           
+                gp_lambda: 10.0                          
+                  gpu_ids: 0                             
+                 how_many: 1000                          
+                init_gain: 0.02                          
+                init_type: normal                        
+                 input_nc: 3                             
+                  isTrain: False                         	[default: None]
+                 lambda_A: 100                           
+                 loadSize: 350                           
+            mask_sub_type: island                        
+               mask_thred: 1                             
+                mask_type: random                        	[default: center]
+            mask_weight_G: 400.0                         
+         max_dataset_size: inf                           
+                    model: shiftnet                      
+                 nThreads: 2                             
+               n_layers_D: 3                             
+                     name: paris_random_mask_20_30       	[default: exp]
+                      ndf: 64                            
+                      ngf: 64                            
+                  no_flip: False                         
+                     norm: instance                      
+                    ntest: inf                           
+     offline_loading_mask: 0                             
+             only_lastest: 0                             
+                output_nc: 3                             
+                  overlap: 4                             
+                    phase: test                          
+           resize_or_crop: resize_and_crop               
+              results_dir: ./results/                    
+           serial_batches: False                         
+                 shift_sz: 1                             
+                show_flow: 0                             
+                     skip: 0                             
+                 strength: 1                             
+                   stride: 1                             
+             style_weight: 10.0                          
+                   suffix:                               
+      testing_mask_folder: ./masks/testing_masks         
+            triple_weight: 1                             
+                tv_weight: 0.0                           
+      use_spectral_norm_D: 1                             
+      use_spectral_norm_G: 0                             
+                  verbose: False                         
+              which_epoch: 30                            	[default: 20]
+         which_model_netD: basic                         
+         which_model_netG: unet_shift_triple             
+----------------- End -------------------
