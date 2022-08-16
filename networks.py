@@ -7,13 +7,10 @@ import torch
 import functools
 
 
-from moduless.modules import SwitchNorm2d
-from moduless.shift_unet import UnetGeneratorShiftTriple
-from moduless.discrimators import NLayerDiscriminator
+from modules.modules import SwitchNorm2d
+from modules.shift_unet import UnetGeneratorShiftTriple
+from modules.discrimators import NLayerDiscriminator
 
-###############################################################################
-# Functions
-###############################################################################
 def get_norm_layer(norm_type='instance'):
     if norm_type == 'batch':
         norm_layer = functools.partial(nn.BatchNorm2d, affine=True, track_running_stats=True)

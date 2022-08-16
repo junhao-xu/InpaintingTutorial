@@ -7,9 +7,7 @@ from .shift_net.InnerShiftTriple import InnerShiftTriple
 from .shift_net.InnerCos import InnerCos
 
 
-################################### ***************************  #####################################
-###################################         Shift_net            #####################################
-################################### ***************************  #####################################
+# ################## Shift_net ###################
 # Defines the Unet generator.
 # |num_downs|: number of downsamplings in UNet. For example,
 # if |num_downs| == 7, image of size 128x128 will become of size 1x1
