@@ -66,29 +66,22 @@ def define_G(input_nc, output_nc, ngf, which_model_netG, opt, mask_global, norm=
     innerCos_list = []
     shift_list = []
 
-    print('input_nc {}'.format(input_nc))
-    print('output_nc {}'.format(output_nc))
-    print('which_model_netG {}'.format(which_model_netG))
-
     # Here we need to initlize an artificial mask_global to construct the init model.
     # When training, we need to set mask for special layers(mostly for Shift layers) first.
     # If mask is fixed during training, we only need to set mask for these layers once,
     # else we need to set the masks each iteration, generating new random masks and mask the input
     # as well as setting masks for these special layers.
-    print('[CREATED] MODEL')
+    print('Creating Model')
     # if which_model_netG == 'unet_shift_triple':
     netG = UnetGeneratorShiftTriple(input_nc, output_nc, 8, opt, innerCos_list, shift_list, mask_global, \
                                                          ngf, norm_layer=norm_layer, use_spectral_norm=use_spectral_norm)
 
-    print('[CREATED] MODEL')
+    print('Creating Model')
     print('Constraint in netG:')
     print(innerCos_list)
 
     print('Shift in netG:')
     print(shift_list)
-
-    print('NetG:')
-    print(netG)
 
     return init_net(netG, init_type, init_gain, gpu_ids), innerCos_list, shift_list
 
@@ -101,7 +94,5 @@ def define_D(input_nc, ndf, which_model_netD,
     # if which_model_netD == 'basic':
     netD = NLayerDiscriminator(input_nc, ndf, n_layers=3, norm_layer=norm_layer, use_sigmoid=use_sigmoid, use_spectral_norm=use_spectral_norm)
 
-    print('NetD:')
-    print(netD)
     return init_net(netD, init_type, init_gain, gpu_ids)
 

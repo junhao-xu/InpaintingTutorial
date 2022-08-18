@@ -46,6 +46,7 @@ class GANLoss(nn.Module):
             loss = self.loss(prediction, target_tensor)
         return loss
 
+
 # Discounting loss 
 class Discounted_L1(nn.Module):
     def __init__(self, opt):
@@ -66,6 +67,33 @@ class Discounted_L1(nn.Module):
         assert not variable.requires_grad, \
         "nn criterions don't compute the gradient w.r.t. targets - please " \
         "mark these variables as volatile or not requiring gradients"
+
+
+def spatial_discounting_mask(mask_width, mask_height, discounting_gamma, discounting=1):
+    """Generate spatial discounting mask constant.
+    Spatial discounting mask is first introduced in publication:
+        Generative Image Inpainting with Contextual Attention, Yu et al.
+    Returns:
+        tf.Tensor: spatial discounting mask
+    """
+    gamma = discounting_gamma
+    shape = [1, 1, mask_width, mask_height]
+    if discounting:
+        print('Use spatial discounting l1 loss.')
+        mask_values = np.ones((mask_width, mask_height), dtype='float32')
+        for i in range(mask_width):
+            for j in range(mask_height):
+                mask_values[i, j] = max(
+                    gamma**min(i, mask_width-i),
+                    gamma**min(j, mask_height-j))
+        mask_values = np.expand_dims(mask_values, 0)
+        mask_values = np.expand_dims(mask_values, 1)
+        mask_values = mask_values
+    else:
+        mask_values = np.ones(shape, dtype='float32')
+
+    return mask_values
+
 
 class TVLoss(nn.Module):
     def __init__(self, tv_loss_weight=1):
