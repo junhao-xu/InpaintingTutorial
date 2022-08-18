@@ -4,7 +4,6 @@ import numpy as np
 from PIL import Image
 import random
 import inspect, re
-import numpy as np
 import os
 import collections
 import math

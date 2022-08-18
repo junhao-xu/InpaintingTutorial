@@ -1,5 +1,5 @@
 import numpy as np
-from moduless.NonparametricShift import Modified_NonparametricShift, Batch_NonShift
+from modules.NonparametricShift import Modified_NonparametricShift, Batch_NonShift
 import torch
 import utils as util
 import time

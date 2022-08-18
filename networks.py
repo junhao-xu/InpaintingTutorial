@@ -10,6 +10,7 @@ import functools
 from modules.modules import SwitchNorm2d
 from modules.shift_unet import UnetGeneratorShiftTriple
 from modules.discrimators import NLayerDiscriminator
+from modules.losses import GANLoss, Discounted_L1, TVLoss
 
 def get_norm_layer(norm_type='instance'):
     if norm_type == 'batch':
@@ -51,8 +52,8 @@ def init_weights(net, init_type='normal', gain=0.02):
 def init_net(net, init_type='normal', init_gain=0.02, gpu_ids=[]):
     if len(gpu_ids) > 0:
         assert(torch.cuda.is_available())
-        net.to(gpu_ids[0])
-        net = torch.nn.DataParallel(net, gpu_ids)
+        net.to(int(gpu_ids[0]))
+        net = torch.nn.DataParallel(net, [int(gpu_ids)])
     init_weights(net, init_type, gain=init_gain)
     return net
 
